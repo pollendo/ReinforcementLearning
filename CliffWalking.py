@@ -20,7 +20,7 @@ class CliffWorld(object):
         self.nr_columns = 10
         self.qValue = [[defaultdict(int) for _ in range(self.nr_columns)] for _ in range(self.nr_rows)]
         self.init_qvalues()
-        self.alpha = 0.5
+        self.alpha = 0.5  # The learning rate is arbitrary but fixed.
 
     def init_qvalues(self):
         """
@@ -71,12 +71,12 @@ class CliffWorld(object):
             self.currentPosition = [self.currentPosition[0] - 1, self.currentPosition[1]]
 
         elif direction == "east":
-            if self.currentPosition[1] == 9:
+            if self.currentPosition[1] == self.nr_columns-1:
                 return
             self.currentPosition = [self.currentPosition[0], self.currentPosition[1] + 1]
 
         elif direction == "south":
-            if self.currentPosition[0] == 5:
+            if self.currentPosition[0] == self.nr_rows-1:
                 return
             self.currentPosition = [self.currentPosition[0] + 1, self.currentPosition[1]]
 
